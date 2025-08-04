@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padlet Tutorial Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flexboxgrid@6.3.1/dist/flexboxgrid.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .menu-item {
+            transition: all 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateX(10px);
+            background-color: rgba(255, 64, 129, 0.1);
+        }
+        .content-area {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-pink-500 mb-4">Padlet Tutorial</h1>
+            <p class="text-gray-600">Interactive guide to get started with Padlet</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="row">
+            <!-- Menu Section -->
+            <div class="col-xs-12 col-md-4">
+                <nav class="bg-white rounded-lg shadow-lg p-6" role="navigation">
+                    <h2 class="text-2xl font-bold mb-4">Tutorial Steps</h2>
+                    <ul class="space-y-3">
+                        <li class="menu-item p-3 rounded-md cursor-pointer" data-content="dashboard">
+                            Start from the dashboard
+                        </li>
+                        <li class="menu-item p-3 rounded-md cursor-pointer" data-content="browser">
+                            Browser Interface
+                        </li>
+                        <li class="menu-item p-3 rounded-md cursor-pointer" data-content="create">
+                            Make a padlet
+                        </li>
+                        <li class="menu-item p-3 rounded-md cursor-pointer" data-content="design">
+                            Design the padlet
+                        </li>
+                        <li class="menu-item p-3 rounded-md cursor-pointer" data-content="privacy">
+                            Control privacy
+                        </li>
+                        <li class="menu-item p-3 rounded-md cursor-pointer" data-content="share">
+                            Share your padlet
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Content Section -->
+            <div class="col-xs-12 col-md-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div id="dashboard" class="content-area">
+                        <h3 class="text-2xl font-bold mb-4">Dashboard Overview</h3>
+                        <p>Learn how to navigate the Padlet dashboard...</p>
+                    </div>
+                    <div id="browser" class="content-area">
+                        <h3 class="text-2xl font-bold mb-4">Browser Interface</h3>
+                        <p>Explore Padlet's browser interface...</p>
+                    </div>
+                    <div id="create" class="content-area">
+                        <h3 class="text-2xl font-bold mb-4">Create Your First Padlet</h3>
+                        <p>Step by step guide to create a new padlet...</p>
+                    </div>
+                    <div id="design" class="content-area">
+                        <h3 class="text-2xl font-bold mb-4">Design Options</h3>
+                        <p>Customize your padlet's appearance...</p>
+                    </div>
+                    <div id="privacy" class="content-area">
+                        <h3 class="text-2xl font-bold mb-4">Privacy Settings</h3>
+                        <p>Manage your padlet's privacy options...</p>
+                    </div>
+                    <div id="share" class="content-area">
+                        <h3 class="text-2xl font-bold mb-4">Sharing Options</h3>
+                        <p>Learn how to share your padlet...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive menu functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const contentAreas = document.querySelectorAll('.content-area');
+
+            // Show first content area by default
+            contentAreas[0].style.display = 'block';
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const contentId = item.getAttribute('data-content');
+                    
+                    // Hide all content areas
+                    contentAreas.forEach(area => {
+                        area.style.display = 'none';
+                    });
+
+                    // Show selected content area
+                    document.getElementById(contentId).style.display = 'block';
+
+                    // Update active state
+                    menuItems.forEach(mi => mi.classList.remove('bg-pink-100'));
+                    item.classList.add('bg-pink-100');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
